@@ -1,0 +1,32 @@
+{  
+    "/": {
+        "/template": 0.25,
+        "/json": 0.45,
+        "/movies/<movieid>": 0.15,
+        "/moviesbytitle": 0.15
+    },
+    "/template":{
+        "/": 0.05,
+        "/json": 0.65,
+        "/movies/<movieid>": 0.15,
+        "/moviesbytitle": 0.15
+    },
+    "/json": {
+        "/": 0.05,
+        "/template": 0.05,
+        "/movies/<movieid>": 0.65,
+        "/moviesbytitle": 0.25
+    },
+    "/movies/<movieid>": {
+        "/": 0.05,
+        "/json": 0.15,
+        "/template": 0.05,
+        "/moviesbytitle": 0.75
+    },
+    "/moviesbytitle": {
+        "/": 0.05,
+        "/json": 0.15,
+        "/movies/<movieid>": 0.75,
+        "/template": 0.05
+    }
+}
