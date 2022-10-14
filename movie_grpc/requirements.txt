@@ -13,4 +13,4 @@ MarkupSafe==2.0.1
 requests==2.26.0
 urllib3==1.26.6
 Werkzeug==2.0.1
-
+pyyaml==6.0

@@ -103,7 +103,7 @@ def rest_get_list_movies():
         request 
     """
     start = time.time()
-    request_showtime = requests.get('http://127.0.0.1:3200'+'/json')
+    request_showtime = requests.get('http://rest:3201'+'/json')
     stop = time.time()
     print("REST: ",stop-start)
     return request_showtime.json(), stop-start
@@ -125,7 +125,7 @@ def graphql_get_list_movies():
     #Perform the request
 
     start = time.time()
-    request_movie = requests.post('http://127.0.0.1:3001/graphql', json ={"query": query})
+    request_movie = requests.post('http://graphql:3101/graphql', json ={"query": query})
     stop=time.time()
     return stop-start
 
@@ -141,7 +141,7 @@ def graphql_get_list_movies_partial():
     }
     }"""
     start = time.time()
-    request_movie = requests.post('http://127.0.0.1:3001/graphql', json ={"query": query})
+    request_movie = requests.post('http://graphql:3101/graphql', json ={"query": query})
     stop=time.time()
     return stop-start
 
@@ -155,7 +155,7 @@ def run():
     #Store config
     to_save.append([TESTINGSIZE, NB_REQ])
 
-    with grpc.insecure_channel('localhost:3001') as channel:
+    with grpc.insecure_channel('dns://grpc:3102') as channel:
         stub = movie_pb2_grpc.MovieStub(channel)
         print("############## GRPC ##############")
         grpc_results = []
@@ -184,7 +184,7 @@ def run():
     rest_results.append(f_time)
 
     print("-------------- Async Request  --------------")
-    req_rest = [grequests.get('http://127.0.0.1:3200'+'/movies/a8034f44-aee4-44cf-b32c-74cf452aaaae') for i in range(NB_REQ)]
+    req_rest = [grequests.get('http://rest:3201'+'/movies/a8034f44-aee4-44cf-b32c-74cf452aaaae') for i in range(NB_REQ)]
     time_map_start = time.time()
     grequests.map(req_rest)
     time_map_stop = time.time()
@@ -221,7 +221,7 @@ def run():
     }
     }"""
 
-    req_gql = [grequests.post('http://127.0.0.1:3001/graphql', json ={"query": query}) for i in range(NB_REQ)]
+    req_gql = [grequests.post('http://graphql:3101/graphql', json ={"query": query}) for i in range(NB_REQ)]
     gql_start = time.time()
     grequests.map(req_gql)
     gql_stop = time.time()

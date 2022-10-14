@@ -1,7 +1,7 @@
 import json
 import yaml
 
-with open("../benchmarker/config.yaml", "r") as stream:
+with open("config.yaml", "r") as stream:
     try:
         TESTINGSIZE =yaml.safe_load(stream)['TESTINGSIZE']
     except yaml.YAMLError as exc:

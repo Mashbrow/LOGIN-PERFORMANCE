@@ -5,7 +5,7 @@ import sys
 from werkzeug.exceptions import NotFound
 import yaml
 
-with open("../benchmarker/config.yaml", "r") as stream:
+with open("config.yaml", "r") as stream:
     try:
         TESTINGSIZE =yaml.safe_load(stream)['TESTINGSIZE']
     except yaml.YAMLError as exc:
@@ -13,7 +13,7 @@ with open("../benchmarker/config.yaml", "r") as stream:
 
 app = Flask(__name__)
 
-PORT = 3200
+PORT = 3201
 HOST = '0.0.0.0'
 
 

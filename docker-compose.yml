@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  grpc:
+    build: ./movie_grpc/
+    ports:
+      - "3102:3102"
+  rest:
+    build: ./movie_rest/
+    ports:
+      - "3201:3201"
+  graphql:
+    build: ./movie_graphql/
+    ports:
+      - "3101:3101"
+  benchmarker:
+    build: ./benchmarker
+
+

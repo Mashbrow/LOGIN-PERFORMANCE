@@ -5,7 +5,7 @@ import movie_pb2_grpc
 import json
 import yaml
 
-with open("../benchmarker/config.yaml", "r") as stream:
+with open("config.yaml", "r") as stream:
     try:
         TESTINGSIZE =yaml.safe_load(stream)['TESTINGSIZE']
     except yaml.YAMLError as exc:
@@ -48,7 +48,7 @@ class MovieServicer(movie_pb2_grpc.MovieServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     movie_pb2_grpc.add_MovieServicer_to_server(MovieServicer(), server)
-    server.add_insecure_port('[::]:3001')
+    server.add_insecure_port('[::]:3102')
     server.start()
     server.wait_for_termination()
 
